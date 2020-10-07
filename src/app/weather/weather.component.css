@@ -1,3 +1,8 @@
 .weather-info{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
 }
+
+.table tbody td{
+    border:none;
+    padding:2px;
+}

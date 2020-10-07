@@ -8,26 +8,28 @@ import { WeatherService } from '../weather/weather.service';
 })
 export class WeatherComponent implements OnInit {
   weatherInfo;
-  error;
-  defaultCity = 'Heidenheim';
-  currentDateTime;
+  errorMessage;
+  defaultCity = 'Heidenheim, Germany';
 
   constructor(private weatherService: WeatherService) { 
-    this.getWeather(this.defaultCity);
+    
   }
   
   ngOnInit(): void {
-    
+    this.getWeather(this.defaultCity);
   }
 
   getWeather(cityname: string){
-    this.currentDateTime = new Date();
+    this.errorMessage = '';
+
     this.weatherService.getWeatherInfo(cityname).subscribe(data =>{
       this.weatherInfo = data;
     }, error => {
-      this.weatherInfo = null;
-      this.error = error.error.message;
+      this.errorMessage = error.error.message;
     });
   }
 
+  getDateTime(dt: number, timeZone: number): string {
+    return new Date((dt + timeZone) * 1000).toUTCString();
+  }
 }
