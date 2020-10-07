@@ -19,11 +19,13 @@
                 <ng-template #loading>Fetching data...</ng-template>
                 <div *ngIf="weatherInfo; else loading">
                     <div class="row">
-                        <div class="col-md-7">
-                            <div style="font-size: 1.8em;font-weight: bold;">{{weatherInfo.name}}, {{weatherInfo.sys.country}}</div>
-                            <div class="" style="color:#eb5e34;padding-top: 5px;font-size: 1.2em;">{{ getDateTime(weatherInfo.dt, weatherInfo.timezone) }}</div>
-                            
-                            <div class="row" style="margin-top: 15px;">
+                        <div class="col-sm-12">
+                            <div style="font-size: 2em;font-weight: bold;">{{weatherInfo.name}}, {{weatherInfo.sys.country}}</div>
+                            <div class="" style="color:#eb5e34;padding-top: 5px;font-size: 1em;">{{ getDateTime(weatherInfo.dt, weatherInfo.timezone) }}</div>
+                        </div>
+                        <div class="col-md-8" style="margin-top:10px;">
+                            <div style="font-size: 1.5em;">{{weatherInfo.weather[0].description | titlecase }}</div>
+                            <div class="row" style="margin-top: 0px;">
                                 <div class="col-sm-12">
                                     <div style="float: left;">
                                         <img src="http://openweathermap.org/img/wn/{{weatherInfo.weather[0].icon}}@2x.png" />
@@ -32,56 +34,32 @@
                                         <div style="float: left; font-size: 4em;">{{weatherInfo.main.temp | number: '1.0-0'}}</div>
                                         <div style="float: left; padding-top: 10px; font-size: 1.5em;margin-left: 5px;">&#176;C</div>
                                     </div>
-                                    <div style="float: left; font-size: 0.95em; padding: 30px 0 0 25px;">
+                                    <div class="text-left" style="float: left; font-size: 1em; padding: 30px 0 0 30px;">
                                         <div>Min: {{weatherInfo.main.temp_min | number: '1.0-0'}} &#176;C</div>
                                         <div>Max: {{weatherInfo.main.temp_max | number: '1.0-0'}} &#176;C</div>
+                                        <div>Feels Like: {{weatherInfo.main.feels_like | number: '1.0-0'}} &#176;C </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-5">
-                            <div style="font-size: 1.3em; margin-top:10px;">{{weatherInfo.weather[0].description | titlecase }}</div>
-                            <div class="" style="padding-top: 20px;font-size: 1.1em;">
-                                <table class="table table-condensed">
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                Humidity
-                                            </td>
-                                            <td>
-                                                {{weatherInfo.main.humidity}}%
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Wind
-                                            </td>
-                                            <td>
-                                                {{weatherInfo.wind.speed * 3.6 | number: '1.0-0'}} km/h
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Pressure
-                                            </td>
-                                            <td>
-                                                {{weatherInfo.main.pressure}} hPa
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Feels Like
-                                            </td>
-                                            <td>
-                                                {{weatherInfo.main.feels_like | number: '1.0-0'}} &#176;C 
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    
-                                    
-                                </table>
-                            </div>
-                            
+                        <div class="col-md-4">
+                            <div style="padding-top: 20px;font-size: 1em;">
+                                <div>
+                                    Humidity: {{weatherInfo.main.humidity}}%
+                                </div>
+                                <div>
+                                    Wind: {{weatherInfo.wind.speed * 3.6 | number: '1.0-0'}} km/h
+                                </div>
+                                <div>
+                                    Pressure: {{weatherInfo.main.pressure}} hPa
+                                </div>
+                                <div>
+                                    Sunrise: {{getTime(weatherInfo.sys.sunrise, weatherInfo.timezone)}}
+                                </div>
+                                <div>
+                                    Sunset: {{getTime(weatherInfo.sys.sunset, weatherInfo.timezone)}}
+                                </div>
+                            </div>                        
                         </div>
                     </div>
                 </div>

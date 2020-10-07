@@ -32,4 +32,8 @@ export class WeatherComponent implements OnInit {
   getDateTime(dt: number, timeZone: number): string {
     return new Date((dt + timeZone) * 1000).toUTCString();
   }
+
+  getTime(dt: number, timeZone: number): string {
+    return new Date((dt + timeZone) * 1000).toUTCString().substring(17, 22);
+  }
 }
