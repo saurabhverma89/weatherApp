@@ -1,0 +1,9 @@
+<div class="row">
+    <div class="col-xs-12">
+        <input type="text" #cityname placeholder="Enter City" class="form-control" />
+        <button (click)=getWeather(cityname.value)>Get Current Weather</button>
+    </div>
+    <div class="col-xs-12">
+        City : {{weatherInfo.name}}
+    </div>
+</div>
