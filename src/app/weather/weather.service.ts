@@ -14,6 +14,7 @@ export class WeatherService {
     let params = new HttpParams()
     .set('q', city)
     .set('appid', this.apiKey)
+    .set('units', 'metric')
 
     return this.http.get(this.url,{params});
   }
